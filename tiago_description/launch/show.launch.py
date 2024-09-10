@@ -28,12 +28,14 @@ from launch_pal.robot_arguments import CommonArgs
 class LaunchArguments(LaunchArgumentsBase):
 
     base_type: DeclareLaunchArgument = TiagoArgs.base_type
+    head_type: DeclareLaunchArgument = TiagoArgs.head_type
     has_screen: DeclareLaunchArgument = TiagoArgs.has_screen
     arm_type: DeclareLaunchArgument = TiagoArgs.arm_type
     end_effector: DeclareLaunchArgument = TiagoArgs.end_effector
     ft_sensor: DeclareLaunchArgument = TiagoArgs.ft_sensor
     wrist_model: DeclareLaunchArgument = TiagoArgs.wrist_model
     camera_model: DeclareLaunchArgument = TiagoArgs.camera_model
+    add_on_module: DeclareLaunchArgument = TiagoArgs.add_on_module
     laser_model: DeclareLaunchArgument = TiagoArgs.laser_model
 
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
@@ -67,7 +69,9 @@ def declare_actions(
             "wrist_model": launch_args.wrist_model,
             "laser_model": launch_args.laser_model,
             "camera_model": launch_args.camera_model,
+            "add_on_module": launch_args.add_on_module,
             "base_type": launch_args.base_type,
+            "head_type": launch_args.head_type,
             "has_screen": launch_args.has_screen,
             "namespace": launch_args.namespace,
             "use_sim_time": launch_args.use_sim_time,

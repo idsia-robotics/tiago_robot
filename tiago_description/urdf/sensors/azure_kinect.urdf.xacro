@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- 
+  Copyright (c) 2024 PAL Robotics S.L. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+
+<!--  Azure Kinect-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- INCLUDES -->
+  <xacro:include filename="$(find tiago_description)/urdf/sensors/azure_kinect.gazebo.xacro" />
+
+  <!-- MACRO DEFINITION-->
+  <xacro:macro name="azure_kinect" params="name parent xyz rpy">
+
+    <!-- Screw Mount frame -->
+    <joint name="${name}_screw_mount_joint" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${name}_screw_mount_link"/>  
+    </joint>
+    
+    <link name="${name}_screw_mount_link">
+    </link>
+    
+    <!-- Screw Mount to Camera Base -->
+    <joint name="${name}_mount_to_camera_base_joint" type="fixed">
+      <origin xyz="0.05838 0.0 0.00639" rpy="0.0 0.0 0.0"/>
+      <parent link="${name}_screw_mount_link"/>
+      <child link="${name}_camera_base"/>  
+    </joint>
+    
+    <link name="${name}_camera_base">
+      <inertial>
+        <origin xyz="0.000018 0.004169 -0.059017" rpy="0.00000 0.00000 0.00000"/>
+        <mass value="0.395"/>
+        <inertia ixx="0.000574872" ixy="-0.000000025" ixz="-0.000000469" iyy="0.000937121" iyz="0.000019848" izz="0.000442895"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://tiago_description/meshes/sensors/azure_kinect.stl" />
+        </geometry>
+        <material name="Grey">
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://tiago_description/meshes/sensors/azure_kinect.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    
+    <!-- Gazebo config -->
+    <!-- Make the azure_kinect_gazebo more realistic. -->
+    <xacro:azure_kinect_gazebo name="${name}"  parent="${name}_camera_base"/>
+
+  </xacro:macro>
+
+</robot>

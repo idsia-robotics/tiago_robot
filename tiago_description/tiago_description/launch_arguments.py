@@ -29,6 +29,7 @@ class TiagoArgs:
         f"{__pkg_dir}/config/{__robot_name}_configuration.yaml")
 
     base_type: DLA = __arg_creator.get_argument('base_type')
+    head_type: DLA = __arg_creator.get_argument('head_type')
     arm_type: DLA = __arg_creator.get_argument('arm_type')
     arm_motor_model: DLA = __arg_creator.get_argument('arm_motor_model')
     end_effector: DLA = __arg_creator.get_argument('end_effector')
@@ -37,4 +38,5 @@ class TiagoArgs:
     wheel_model: DLA = __arg_creator.get_argument('wheel_model')
     laser_model: DLA = __arg_creator.get_argument('laser_model')
     camera_model: DLA = __arg_creator.get_argument('camera_model')
+    add_on_module: DLA = __arg_creator.get_argument('add_on_module')
     has_screen: DLA = __arg_creator.get_argument('has_screen')

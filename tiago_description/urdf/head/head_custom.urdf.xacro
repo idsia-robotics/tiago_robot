@@ -30,8 +30,7 @@
 
   <!-- INCLUDES -->
   <xacro:include filename="$(find pal_urdf_utils)/urdf/deg_to_rad.urdf.xacro" />
-  <xacro:include filename="$(find tiago_description)/urdf/sensors/xtion_pro_live.urdf.xacro" />
-  <xacro:include filename="$(find tiago_description)/urdf/sensors/orbbec_astra.urdf.xacro" />
+  <xacro:include filename="$(find tiago_description)/urdf/sensors/azure_kinect.urdf.xacro" />
   <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
   <!-- MACRO DEFINITION-->
@@ -57,7 +56,7 @@
           <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
         </geometry>
         <material name="White" />
-      </collision>
+      </collision>Head
     </link>
 
     <joint name="${name}_joint" type="revolute">
@@ -85,22 +84,21 @@
   <xacro:macro name="head_2" params="name parent">
     <link name="${name}_link">
       <inertial>
-        <origin xyz="0.04700 0.05542 0.00022" rpy="0.00000 0.00000 0.00000"/>
-        <mass value="0.66123"/> 
-        <!-- Only 0.378 kg of plastic cover, remaining is motor (0.28323) -->
-        <inertia ixx="0.00462000000" ixy="0.00068900000" ixz="0.00000600000" iyy="0.00486100000" iyz="0.00000600000" izz="0.00313200000"/>
+        <origin xyz="0.007999 0.000235 -0.024779" rpy="0.00000 0.00000 0.00000"/>
+        <mass value="0.188"/>
+        <inertia ixx="0.000864253" ixy="-9.286e-11" ixz="6.0e-9" iyy="0.000422887" iyz="-4.13e-7" izz="0.000538406"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_2.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/azure_kinect_mount.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/azure_kinect_mount.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
@@ -125,42 +123,11 @@
     <xacro:head_1 name="${name}_1" parent="${parent}" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
 
-    <!-- Cameras-->
-
-    <!-- Asus Xtion-->
-    <xacro:if value="${camera_model == 'asus-xtion'}">
-      <xacro:xtion_pro_live name="head_front_camera" parent="${name}_2_link" camera_model="${camera_model}" extrinsic_calibration_dir="${extrinsic_calibration_dir}">
-        <origin xyz="${camera_position_x} ${camera_position_y} ${camera_position_z}" rpy="${camera_orientation_r} ${camera_orientation_p} ${camera_orientation_y}" />
-        <!-- optical origin -->
-        <origin xyz="0 0 0" rpy="${-90 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" />
-      </xacro:xtion_pro_live>
-    </xacro:if>
-
-    <!-- Orbecc Astra-->
-    <xacro:if value="${camera_model in ['orbbec-astra', 'orbbec-astra-pro']}">
-      <xacro:orbbec_astra name="head_front_camera" parent="${name}_2_link" camera_model="${camera_model}" extrinsic_calibration_dir="${extrinsic_calibration_dir}">
-        <origin xyz="${camera_position_x} ${camera_position_y} ${camera_position_z}" rpy="${camera_orientation_r} ${camera_orientation_p} ${camera_orientation_y}" />
-        <!-- optical origin -->
-        <origin xyz="0 0 0" rpy="${-90 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" />
-      </xacro:orbbec_astra>
-    </xacro:if>
-
-    <!-- Thermal camera -->
-    <xacro:if value="${has_thermal_camera}">
-      <joint name="thermal_camera_joint" type="fixed">
-        <parent link="${head_link_name}"/>
-        <child link="thermal_camera"/>
-        <origin xyz="0.05 0.15 0" rpy="${0*deg_to_rad} ${-90*deg_to_rad} ${-180*deg_to_rad}" />
-      </joint>
-      <link name="thermal_camera">
-        <inertial>
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-          <mass value="0.0001" />
-          <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
-        </inertial>
-      </link>
-    </xacro:if>
-
+    <!-- Azure Kinect -->
+    <!-- CHECK VALUES FROM CAMERA REAL NODE -->
+    <xacro:azure_kinect name="azure_kinect" parent="${name}_2_link" xyz="-0.008 0.097 0" rpy="${-90 * deg_to_rad} 0.0 0.0" >
+    <!-- Parent link frame to Kinect Screw Mount -->
+    </xacro:azure_kinect>
   </xacro:macro>
 
 </robot>
