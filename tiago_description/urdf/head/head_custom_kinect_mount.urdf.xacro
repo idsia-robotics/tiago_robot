@@ -39,21 +39,21 @@
   <xacro:macro name="head_1" params="name parent">
     <link name="${name}_link">
       <inertial>
-        <origin xyz="-9.401 0.0 78.826" rpy="0.00000 0.00000 0.00000"/>
-        <mass value="0.121"/>
-        <inertia ixx="0.00035237400" ixy="-0.00000000100" ixz="0.00000793600" iyy="0.00038520500" iyz="-0.00000000500" izz="0.00028131647"/>
+        <origin xyz="-0.00508 0.00237 0.07229" rpy="0.00000 0.00000 0.00000"/>
+        <mass value="0.62220"/>
+        <inertia ixx="0.00119200000" ixy="-0.00000700000" ixz="0.00009600000" iyy="0.00140200000" iyz="0.00000400000" izz="0.00088900000"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_1_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/head_1.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0.0 0 0" rpy="0 0 0.0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_1_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </collision>Head
@@ -84,21 +84,21 @@
   <xacro:macro name="head_2" params="name parent">
     <link name="${name}_link">
       <inertial>
-        <origin xyz="0.031286 0.058285 -0.0" rpy="0.00000 0.00000 0.00000"/>
-        <mass value="0.429"/>
-        <inertia ixx="0.002283740" ixy="-0.000222116" ixz="-0.000000055" iyy="0.002750291" iyz="0.000000369" izz="0.002330453"/>
+        <origin xyz="0.007999 0.000235 -0.024779" rpy="0.00000 0.00000 0.00000"/>
+        <mass value="0.188"/>
+        <inertia ixx="0.000864253" ixy="-9.286e-11" ixz="6.0e-9" iyy="0.000422887" iyz="-4.13e-7" izz="0.000538406"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_2_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/azure_kinect_mount.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_2_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/azure_kinect_mount.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
@@ -125,7 +125,7 @@
 
     <!-- Azure Kinect -->
     <!-- CHECK VALUES FROM CAMERA REAL NODE -->
-    <xacro:azure_kinect name="azure_kinect" parent="${name}_2_link" xyz="0.0414 0.0725 0" rpy="${-90 * deg_to_rad} 0.0 0.0" >
+    <xacro:azure_kinect name="azure_kinect" parent="${name}_2_link" xyz="-0.008 0.097 0" rpy="${-90 * deg_to_rad} 0.0 0.0" >
     <!-- Parent link frame to Kinect Screw Mount -->
     </xacro:azure_kinect>
   </xacro:macro>
