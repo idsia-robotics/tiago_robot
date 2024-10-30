@@ -34,16 +34,7 @@ base_type:
   description: 'Base type'
   choices: ['pmb2', 'omni_base']
   default_value: 'pmb2'
-head_type:
-  description: 'Head type'
-  choices: ['original', 'custom']
-  default_value: 'custom'
 camera_model:
   description: 'Head camera model'
-  choices: ['orbbec-astra', 'orbbec-astra-pro', 'asus-xtion', 'no-camera']
-  default_value: 'orbbec-astra'
-add_on_module:
-  description: 'Base add-on module'
-  choices: ['no-add-on', 'lidar-back']
-  default_value: 'lidar-back'
-
+  choices: ['orbbec-astra', 'orbbec-astra-pro', 'asus-xtion', 'azure-kinect', 'no-camera']
+  default_value: 'azure-kinect'

@@ -54,7 +54,7 @@
   <xacro:arg name="end_effector" default="pal-hey5"/>
 
   <!-- no-camera, orbbec-astra, orbbec-astra-pro, asus-xtion -->
-  <xacro:arg name="camera_model" default="azure-kinect"/>
+  <xacro:arg name="camera_model" default="orbbec-astra"/>
 
   <!-- no-add-on, lidar-back -->
   <xacro:arg name="add_on_module" default="lidar-back"/>
@@ -79,7 +79,8 @@
 
   <!-- HW configuration -->
   <xacro:property name="base_type" value="$(arg base_type)" />
-  <xacro:property name="head_type" value="$(arg head_type)" />
+  <xacro:property name="head_type" value="${'custom' if camera_model == 'azure-kinect' else 'original'}"/>
+  <!-- <xacro:property name="head_type" value="custom"/> -->
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="arm_type" value="$(arg arm_type)" />
   <xacro:property name="ft_sensor" value="$(arg ft_sensor)" />
@@ -94,9 +95,6 @@
   <!-- HW configuration check -->
   <xacro:if value="${base_type not in ['pmb2', 'omni_base']}">
     <xacro:wrong_base_type/>
-  </xacro:if>
-  <xacro:if value="${head_type not in ['original', 'custom']}">
-    <xacro:wrong_head_type/>
   </xacro:if>
   <xacro:if value="${laser_model not in ['no-laser', 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
     <xacro:wrong_laser_model/>
@@ -115,9 +113,6 @@
   </xacro:if>
   <xacro:if value="${camera_model not in ['no-camera', 'orbbec-astra', 'orbbec-astra-pro', 'asus-xtion', 'azure-kinect']}">
     <xacro:wrong_camera_model/>
-  </xacro:if>
-  <xacro:if value="${add_on_module not in ['no-add-on', 'lidar-back']}">
-    <xacro:wrong_add_on_module/>
   </xacro:if>
 
   <!-- HW configuration helpers-->

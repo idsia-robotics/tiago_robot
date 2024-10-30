@@ -39,7 +39,6 @@ class LaunchArguments(LaunchArgumentsBase):
     ft_sensor: DeclareLaunchArgument = TiagoArgs.ft_sensor
     wrist_model: DeclareLaunchArgument = TiagoArgs.wrist_model
     camera_model: DeclareLaunchArgument = TiagoArgs.camera_model
-    add_on_module: DeclareLaunchArgument = TiagoArgs.add_on_module
     laser_model: DeclareLaunchArgument = TiagoArgs.laser_model
     has_screen: DeclareLaunchArgument = TiagoArgs.has_screen
 
@@ -101,13 +100,11 @@ def create_robot_description_param(context, *args, **kwargs):
     xacro_input_args = {
         "arm_type": read_launch_argument("arm_type", context),
         "camera_model": read_launch_argument("camera_model", context),
-        "add_on_module": read_launch_argument("add_on_module", context),
         "end_effector": read_launch_argument("end_effector", context),
         "ft_sensor": read_launch_argument("ft_sensor", context),
         "laser_model": read_launch_argument("laser_model", context),
         "wrist_model": read_launch_argument("wrist_model", context),
         "base_type": read_launch_argument("base_type", context),
-        "head_type": read_launch_argument("head_type", context),
         "has_screen": read_launch_argument("has_screen", context),
         "use_sim_time": read_launch_argument("use_sim_time", context),
         "is_public_sim": read_launch_argument("is_public_sim", context),
