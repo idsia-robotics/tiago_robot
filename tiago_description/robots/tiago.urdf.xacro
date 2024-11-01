@@ -108,7 +108,7 @@
   <xacro:if value="${wrist_model not in ['wrist-2010', 'wrist-2017']}">
     <xacro:wrong_wrist_model/>
   </xacro:if>
-  <xacro:if value="${end_effector not in ['no-end-effector', 'pal-gripper', 'pal-hey5', 'custom', 'robotiq-2f-85', 'robotiq-2f-140']}">
+  <xacro:if value="${end_effector not in ['no-end-effector', 'pal-gripper', 'pal-hey5', 'custom', 'robotiq-2f-85', 'robotiq-2f-140', 'tray']}">
     <xacro:wrong_end_effector/>
   </xacro:if>
   <xacro:if value="${camera_model not in ['no-camera', 'orbbec-astra', 'orbbec-astra-pro', 'asus-xtion', 'azure-kinect']}">
