@@ -2,6 +2,9 @@
 Changelog for package tiago_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.6.0 (2024-09-18)
 ------------------
 * Fix torso height for the omni_base
