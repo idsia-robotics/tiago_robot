@@ -2,6 +2,11 @@
 Changelog for package tiago_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add xacro tests
+* Contributors: Aina
+
 4.7.0 (2024-11-06)
 ------------------
 
