@@ -2,6 +2,15 @@
 Changelog for package tiago_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'vmo/joy_limits' into 'humble-devel'
+  Adding joystick limits handling
+  See merge request robots/tiago_robot!321
+* Adding pal distro condition
+* Adding joystick limits handling
+* Contributors: thomaspeyrucain, vivianamorlando
+
 4.8.0 (2024-11-21)
 ------------------
 * Remove arm planning group alone
