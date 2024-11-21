@@ -2,8 +2,8 @@
 Changelog for package tiago_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.9.0 (2024-11-21)
+------------------
 * Merge branch 'vmo/joy_limits' into 'humble-devel'
   Adding joystick limits handling
   See merge request robots/tiago_robot!321
