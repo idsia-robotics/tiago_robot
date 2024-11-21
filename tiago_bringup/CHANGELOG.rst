@@ -2,6 +2,11 @@
 Changelog for package tiago_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove arm planning group alone
+* Contributors: Aina
+
 4.7.1 (2024-11-08)
 ------------------
 
