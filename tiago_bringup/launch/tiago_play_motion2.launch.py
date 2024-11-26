@@ -18,6 +18,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
+import rclpy.logging
 from tiago_description.launch_arguments import TiagoArgs
 from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 from tiago_description.tiago_launch_utils import get_tiago_hw_suffix
@@ -25,6 +26,8 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from launch_pal.param_utils import merge_param_files
+import rclpy
+
 
 
 @dataclass(frozen=True)
@@ -73,23 +76,33 @@ def create_play_motion_params(context):
 
     pkg_name = "tiago_bringup"
     pkg_share_dir = get_package_share_directory(pkg_name)
-    arm = read_launch_argument("arm_type", context),
+    arm = read_launch_argument("arm_type", context)
+    end_effector = read_launch_argument("end_effector", context),
 
     hw_suffix = get_tiago_hw_suffix(
         arm=read_launch_argument("arm_type", context),
         end_effector=read_launch_argument("end_effector", context),
     )
 
-    motions_file = f"tiago_motions{hw_suffix}.yaml"
+    motions_file = "tiago_motions_general.yaml"
+
+    if end_effector[0] != 'no-end-effector':
+        motions_file = f"tiago_motions{hw_suffix}.yaml"
+    
     motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, "config", "motions", motions_file]
     )
+
     general_yaml = PathJoinSubstitution(
         [pkg_share_dir, "config", "motions", "tiago_motions_general.yaml"]
     )
+
     if (arm != 'no-arm'):
         merged_yaml = merge_param_files([motions_yaml.perform(context),
                                          general_yaml.perform(context)])
+        
+        if end_effector[0] == 'no-end-effector':
+            merged_yaml = general_yaml
     else:
         merged_yaml = motions_yaml
 
