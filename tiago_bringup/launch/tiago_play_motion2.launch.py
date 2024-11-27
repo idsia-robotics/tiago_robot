@@ -74,17 +74,20 @@ def create_play_motion_params(context):
     pkg_name = "tiago_bringup"
     pkg_share_dir = get_package_share_directory(pkg_name)
     arm = read_launch_argument("arm_type", context)
-    end_effector = read_launch_argument("end_effector", context),
+    end_effector = read_launch_argument("end_effector", context)
 
     hw_suffix = get_tiago_hw_suffix(
         arm=read_launch_argument("arm_type", context),
         end_effector=read_launch_argument("end_effector", context),
     )
 
-    motions_file = "tiago_motions_general.yaml"
-
-    if end_effector[0] != 'no-end-effector':
-        motions_file = f"tiago_motions{hw_suffix}.yaml"
+    if arm != 'no-arm':
+        if end_effector == 'no-end-effector':
+            motions_file = "tiago_motions_general.yaml"
+        else:
+            motions_file = f"tiago_motions{hw_suffix}.yaml"
+    else:
+        motions_file = "tiago_motions_general.yaml"
 
     motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, "config", "motions", motions_file]
@@ -98,7 +101,7 @@ def create_play_motion_params(context):
         merged_yaml = merge_param_files([motions_yaml.perform(context),
                                          general_yaml.perform(context)])
 
-        if end_effector[0] == 'no-end-effector':
+        if end_effector == 'no-end-effector':
             merged_yaml = general_yaml
     else:
         merged_yaml = motions_yaml
