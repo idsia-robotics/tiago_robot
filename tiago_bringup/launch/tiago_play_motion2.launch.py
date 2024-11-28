@@ -78,7 +78,7 @@ def create_play_motion_params(context):
 
     hw_suffix = get_tiago_hw_suffix(
         arm=read_launch_argument("arm_type", context),
-        end_effector=read_launch_argument("end_effector", context),
+        end_effector=read_launch_argument("end_effector", context)
     )
 
     if arm != 'no-arm':
@@ -87,7 +87,7 @@ def create_play_motion_params(context):
         else:
             motions_file = f"tiago_motions{hw_suffix}.yaml"
     else:
-        motions_file = "tiago_motions_general.yaml"
+        motions_file = "tiago_motions_no-arm.yaml"
 
     motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, "config", "motions", motions_file]
