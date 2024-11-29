@@ -76,29 +76,25 @@ def create_play_motion_params(context):
     arm = read_launch_argument("arm_type", context)
     end_effector = read_launch_argument("end_effector", context)
 
-    hw_suffix = get_tiago_hw_suffix(
-        arm=read_launch_argument("arm_type", context),
-        end_effector=read_launch_argument("end_effector", context)
-    )
+    hw_suffix = get_tiago_hw_suffix(arm=arm, end_effector=end_effector)
 
-    if arm != 'no-arm' and end_effector == 'no-end-effector':
-        motions_file = "tiago_motions_general.yaml"
+    if arm != 'no-arm':
+
+        general_yaml = PathJoinSubstitution(
+            [pkg_share_dir, "config", "motions", "tiago_motions_general.yaml"]
+        )
+        if end_effector == 'no-end-effector':
+            merged_yaml = general_yaml
+        else:
+            motions_yaml = PathJoinSubstitution(
+                [pkg_share_dir, "config", "motions", f"tiago_motions{hw_suffix}.yaml"]
+            )
+            merged_yaml = merge_param_files([motions_yaml.perform(context),
+                                             general_yaml.perform(context)])
     else:
-        motions_file = f"tiago_motions{hw_suffix}.yaml"
-
-    motions_yaml = PathJoinSubstitution(
-        [pkg_share_dir, "config", "motions", motions_file]
-    )
-
-    general_yaml = PathJoinSubstitution(
-        [pkg_share_dir, "config", "motions", "tiago_motions_general.yaml"]
-    )
-
-    if (arm != 'no-arm' and end_effector != 'no-end-effector'):
-        merged_yaml = merge_param_files([motions_yaml.perform(context),
-                                         general_yaml.perform(context)])
-    else:
-        merged_yaml = motions_yaml
+        merged_yaml = PathJoinSubstitution(
+            [pkg_share_dir, "config", "motions", f"tiago_motions{hw_suffix}.yaml"]
+        )
 
     motion_planner_file = f"motion_planner{hw_suffix}.yaml"
     motion_planner_config = PathJoinSubstitution(
