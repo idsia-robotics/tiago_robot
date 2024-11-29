@@ -2,6 +2,19 @@
 Changelog for package tiago_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* simplified logic
+* fix typo
+* fix logic
+* logic fix
+* fix logic of 'general' file
+* fix formatting errors
+* no needed
+* fix to don't let the robot load the no-ee.yaml file if no end effector is selected
+* Change last point of home motion
+* Contributors: Aina, matteovillani
+
 4.9.0 (2024-11-21)
 ------------------
 * Merge branch 'vmo/joy_limits' into 'humble-devel'
