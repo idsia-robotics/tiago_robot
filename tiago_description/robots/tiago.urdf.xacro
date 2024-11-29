@@ -79,14 +79,15 @@
 
   <!-- HW configuration -->
   <xacro:property name="base_type" value="$(arg base_type)" />
-  <xacro:property name="head_type" value="${'custom' if camera_model == 'azure-kinect' else 'original'}"/>
-  <!-- <xacro:property name="head_type" value="custom"/> -->
+  <!-- <xacro:property name="head_type" value="${'custom' if camera_model == 'azure-kinect' else 'original'}"/> -->
+  <xacro:property name="head_type" value="custom"/>
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="arm_type" value="$(arg arm_type)" />
   <xacro:property name="ft_sensor" value="$(arg ft_sensor)" />
   <xacro:property name="wrist_model" value="$(arg wrist_model)" />
   <xacro:property name="end_effector" value="$(arg end_effector)" />
-  <xacro:property name="camera_model" value="$(arg camera_model)" />
+  <!-- <xacro:property name="camera_model" value="$(arg camera_model)" /> -->
+  <xacro:property name="camera_model" value="azure-kinect" />
   <xacro:property name="has_thermal_camera" default="$(arg has_thermal_camera)"/>
   <xacro:property name="has_screen" value="$(arg has_screen)" />
   <xacro:property name="no_safety_eps" value="$(arg no_safety_eps)" />

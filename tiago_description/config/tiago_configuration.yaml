@@ -37,4 +37,4 @@ base_type:
 camera_model:
   description: 'Head camera model'
   choices: ['orbbec-astra', 'orbbec-astra-pro', 'asus-xtion', 'azure-kinect', 'no-camera']
-  default_value: 'azure-kinect'
+  default_value: 'orbbec-astra'
