@@ -2,8 +2,8 @@
 Changelog for package tiago_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.10.0 (2024-11-29)
+-------------------
 * lunch the gravity comp controller only if not a public simulation and if Tiago has a arm
 * Contributors: matteovillani
 
