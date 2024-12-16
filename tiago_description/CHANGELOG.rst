@@ -2,6 +2,11 @@
 Changelog for package tiago_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove offset for the pal gripper and the robotiq
+* Contributors: thomas.peyrucain
+
 4.10.0 (2024-11-29)
 -------------------
 
