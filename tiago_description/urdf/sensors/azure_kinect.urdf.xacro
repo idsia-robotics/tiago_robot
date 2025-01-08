@@ -55,12 +55,12 @@
         <material name="Grey">
         </material>
       </visual>
-      <collision>
+      <!-- <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://tiago_description/meshes/sensors/azure_kinect.stl" />
         </geometry>
-      </collision>
+      </collision> -->
     </link>
 
     

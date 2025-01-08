@@ -54,7 +54,7 @@
       <collision>
         <origin xyz="0.0 0 0" rpy="0 0 0.0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_1_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/head_1_custom_collision.dae" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </collision>
@@ -99,7 +99,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://tiago_description/meshes/head/head_2_custom.stl" scale="1 1 1"/>
+          <mesh filename="package://tiago_description/meshes/head/head_2_custom_collision.dae" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
